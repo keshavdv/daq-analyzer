@@ -1,0 +1,120 @@
+* {
+   -moz-user-select: none;
+   -khtml-user-select: none;
+   -webkit-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
+}
+
+body {
+	font-family: 'open_sansregular';
+	overflow: hidden;
+}
+
+div {
+	/*font-size: 15px;*/
+}
+
+.text-center {
+	text-align: center;
+}
+
+#holder {
+	width: 100%;
+	height: 100%;
+	background-image: url("../img/drop-cloud.png");
+	background-size: 128px 96px;
+	background-position: center 75px;
+	background-repeat: no-repeat;
+	font-family: 'open_sansregular';
+	padding-top: 195px;
+}
+
+#overlay {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background-color: rgba(85,99,108,0.6);
+	z-index: 1070;
+}
+
+.settings {
+	/*padding: 0 0 15px 0;*/
+	background: #efefef;
+	height: 100%;
+}
+
+.settings .well {
+	border: 1px solid #ccc;
+	height: 535px;
+	overflow: scroll;
+	background: white;
+	border-radius: 3px;
+}
+
+.settings .well ul {
+	list-style: none;
+	margin: 0;
+	font-family: 'open_sansregular';
+}
+
+.settings .well ul li {
+	font-size: 13px;
+	padding: 1px 0 1px 4px;
+}
+
+.settings .well ul li:hover {
+	cursor: pointer;
+}
+
+.settings .editing {
+	background: white;
+	font-size: 12px;
+	height: 22px;
+	border-bottom: 1px solid #ccc;
+	margin-bottom: 15px;
+	padding: 0 6px;
+}
+
+.settings .editing span {
+	font-family: 'open_sansbold';
+	margin-right: 5px;
+}
+
+.settings .edit {
+	padding: 0 15px;
+	font-size: 13px;
+}
+
+.settings .well ul li.selected {
+	background: #666;
+	color: white;
+}
+
+.settings .edit fieldset {
+	margin-top: 0;
+	padding-top: 10px;
+}
+
+.settings .edit legend {
+	background: none
+}
+
+.settings .edit label.field-name {
+	font-size: .75rem;
+}
+
+.input-row input[type="text"] {
+	height: 30px;
+}
+
+.button.secondary {
+	border: 1px solid #ccc;
+}
+
+.button {
+	border: 1px solid #007095;
+	box-sizing: border-box;
+}

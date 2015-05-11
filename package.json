@@ -1,0 +1,21 @@
+{
+	"name": "BE Analyzer",
+	"version": "0.0.1",
+	"main": "src/index.html",
+	"window": {
+		
+	},
+	"window": {
+	    "title": "BE Analyzer",
+	    "icon": "source/favicon.ico",
+	    "frame": true,
+		"toolbar": true,
+	    "position": "mouse"
+	  },
+	"author": "Keshav Varma",
+	"license": "MIT",
+	"dependencies": {
+		"ini": "*",
+		"lazy": "*"
+	}
+}
