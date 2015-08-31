@@ -1,5 +1,5 @@
 {
-	"name": "BE Analyzer",
+	"name": "BE-Analyzer",
 	"version": "0.0.1",
 	"main": "src/index.html",
 	"window": {
@@ -10,12 +10,15 @@
 	    "icon": "source/favicon.ico",
 	    "frame": true,
 		"toolbar": true,
-	    "position": "mouse"
+	    "position": "center",
+	    "width": 1024,
+	    "height": 768,
+	    "min_width": 1024,
+		"min_height": 768
 	  },
 	"author": "Keshav Varma",
 	"license": "MIT",
 	"dependencies": {
-		"ini": "*",
-		"lazy": "*"
+  		"node-protobuf": "*"
 	}
 }

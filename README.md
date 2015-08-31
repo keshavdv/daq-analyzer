@@ -1,6 +1,6 @@
-## Data Acquisition
+## About
 
-GUI application for realtime telemetry
+GUI to view realtime telemetry from devices based on the Hermes protocol.
 
 ### Dev
 

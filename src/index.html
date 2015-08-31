@@ -1,28 +1,97 @@
 <!DOCTYPE html>
-<html ng-app="parserApp">
+<html ng-app="analyzeApp">
   <head>
-    <link rel="stylesheet" href="css/foundation.css" />
+    <link rel="stylesheet" href="components/foundation/css/foundation.css" />
+    <link rel="stylesheet" href="components/fontawesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="components/rickshaw/rickshaw.css" />
     <link rel="stylesheet" href="font/stylesheet.css" />
     <link rel="stylesheet" href="css/style.css" />
-    <script src="js/vendor/jquery.js"></script>
-    <script src="js/vendor/fastclick.js"></script>
-    <script src="js/vendor/modernizr.js"></script>
-    <script src="js/foundation.min.js"></script>
-    <script src="js/vendor/angular.min.js"></script>
-    <script src="js/vendor/angular-route.js"></script>
+    <script src="components/jquery/dist/jquery.js"></script>
+    <script src="components/jquery-ui/jquery-ui.min.js"></script>
+    <script src="components/rickshaw/vendor/d3.v3.js"></script>
+    <script src="components/rickshaw/rickshaw.min.js"></script>
+    <script src="components/dygraphs/dygraph-combined.js"></script>
+    <script src="components/fastclick/lib/fastclick.js"></script>
+    <script src="components/modernizr/modernizr.js"></script>
+    <script src="components/foundation/js/foundation.min.js"></script>
+    <script src="components/angular/angular.js"></script>
+    <script src="components/nsPopover/src/nsPopover.js"></script>
+    <script src="components/angular-route/angular-route.js"></script>
+    <script src="components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="components/angular-ui-sortable/sortable.min.js"></script>
+    <script src="components/angular-dygraphs/src/angular-dygraphs.js"></script>
     <script src="js/app/app.js"></script>
-    <script>
-	    var gui = require('nw.gui');
-  		var mb = new gui.Menu({type:"menubar"});
-      var win = gui.Window.get();
-  		if(process.platform == "darwin") mb.createMacBuiltin("");
-  		win.menu = mb;
-
-      window.ondragover = function(e) { e.preventDefault(); return false };
-      window.ondrop = function(e) { e.preventDefault(); return false };
+    <script src="js/app/bridge.js"></script>
+    <script type="text/ng-template" id="menu">
+      <div class="arrow-left"></div>
+      <div class="input-popover">
+        <ul>
+          <li>
+            <span>Channel Settings</span>
+            <label><input type="checkbox" checked>Enabled</label>
+          </li>
+          <li><a>Reset channel</a></li>
+          <li><a>Hide channel</a></li>
+        </ul>
+      </div>
     </script>
   </head>
-  <body>
-  Hello World
+  <body ng-controller="AppController">
+    <div class="row medium-collapse large-collapse">
+      <div class="columns small-12">
+        <div class="control-row row">
+          <div ng-show="!connected" class="connect-button" ng-click="connect()">Connect</div>
+          <div ng-show="connected && !started" href="#" class="start-button" ng-click="start()">
+            <span>Start</span>
+            <div class="device-name" ng-bind="device"></div>
+          </div>
+          <div ng-show="started" href="#" class="stop-button" ng-click="stop()">Stop</div>
+          <div ng-show="aconnected" href="#" class="start-button" ng-click="disconnect()">{{configuration.model}}</div>
+        </div>
+        <div class="row">
+          <div ui-sortable="sortableOptions" ng-model="inputs" class="inputs">
+            <div ng-repeat="input in inputs" class="row input-row medium-collapse large-collapse" ng-class="{hidden: !input.enabled}">
+              <div class="columns small-12">
+                <div class="input-drag">
+                  <span class="icon-wrapper"><i class="fa fa-arrows-v drag-handle"></i></span>
+                </div>
+                <div class="input-info">
+                  <div class="row medium-collapse large-collapse">
+                    <div class="columns small-10">
+                      {{input.name}} 
+                      <div class="row" ng-hide="!input.enabled">
+                        <span class="status" ng-if="input.enabled">Enabled</span>
+                      </div>
+                    </div>
+
+                    <div class="columns small-2 text-right" ng-show="input.enabled">
+                      <i ng-show="!input.hidden" class="settings fa fa-times" title="Disable" ng-click="disableInput(input)"></i>
+                      <i class="check fa fa-gear" title="Settings" ns-popover ns-popover-template="menu" ns-popover-trigger="click" ns-popover-timeout="10000000" ns-popover-placement="right|top"></i>
+                    </div>
+                    
+                    <div class="columns small-2 text-right" ng-show="!input.enabled">
+                      <i class="settings fa fa-check" title="Enable" ng-click="enableInput(input)"></i>
+                    </div>
+                  </div>
+
+                </div>
+                  
+                <div class="row input-graph-row">
+                  <div class="columns small-12 graph-outer-wrapper">
+                    <div class="graph-wrapper">
+                      <div class="graph">
+                        <!-- <chart data="data[input.id].values" color="#85BB6F"></chart> -->
+                        <ng-dygraphs ng-if="data[input.id].values.length && input.enabled" data="data[input.id].values" options="data[input.id].options"></ng-dygraphs>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
   </body>
 </html>
