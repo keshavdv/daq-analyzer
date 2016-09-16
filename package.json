@@ -3,13 +3,13 @@
 	"version": "0.0.1",
 	"main": "src/index.html",
 	"window": {
-		
+
 	},
 	"window": {
 	    "title": "BE Analyzer",
 	    "icon": "source/favicon.ico",
 	    "frame": true,
-		"toolbar": true,
+		"toolbar": false,
 	    "position": "center",
 	    "width": 1024,
 	    "height": 768,
